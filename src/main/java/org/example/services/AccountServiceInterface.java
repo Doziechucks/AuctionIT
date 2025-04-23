@@ -1,10 +1,13 @@
 package org.example.services;
 
 import org.example.data.models.User;
+import org.example.dto.requests.CreateAccountRequest;
 import org.example.dto.requests.LoginRequest;
+import org.example.dto.responses.CreateAccountResponse;
+import org.example.dto.responses.LoginResponse;
 
 public interface AccountServiceInterface {
-    User createUser(User user, String otp);
+    public CreateAccountResponse createUser(CreateAccountRequest createAccountRequest, String otp);
     public String sendOtp(String email);
-    public Lo login(LoginRequest loginRequest);
+    public LoginResponse login(LoginRequest loginRequest);
 }
