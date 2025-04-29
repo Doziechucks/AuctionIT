@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 @Document(collection = "auctions")
 @Getter
@@ -32,10 +33,12 @@ public class Auction {
     private BigDecimal startingPrice;
     @Setter
     private BigDecimal currentPrice;
+    @Setter
+    private List<String> itemUrls;
 
 
 
-    public Auction(String itemName, String itemDescription, ItemCategory itemCategory, String sellerId, String currentBidderId, LocalDate postTime, LocalDate startTime, LocalDate endTime, BigDecimal startingPrice, BigDecimal currentPrice) {
+    public Auction(String itemName, String itemDescription, ItemCategory itemCategory, String sellerId, String currentBidderId, LocalDate postTime, LocalDate startTime, LocalDate endTime, BigDecimal startingPrice, BigDecimal currentPrice, List<String> itemUrls) {
         this.itemName = itemName;
         this.itemDescription = itemDescription;
         this.itemCategory = itemCategory;
@@ -46,6 +49,7 @@ public class Auction {
         this.endTime = endTime;
         this.startingPrice = startingPrice;
         this.currentPrice = currentPrice;
+        this.itemUrls = itemUrls;
 
     }
 

@@ -6,6 +6,7 @@ import org.example.data.models.ItemCategory;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -21,5 +22,6 @@ public class AuctionResponse {
     private LocalDate endTime;
     private BigDecimal startingPrice;
     private BigDecimal currentPrice;
+    private List<String> itemUrls;
 
 }

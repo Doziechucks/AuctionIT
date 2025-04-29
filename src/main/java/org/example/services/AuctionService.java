@@ -29,7 +29,8 @@ public class AuctionService implements AuctionServiceInterface{
                 auctionRequest.getStartTime(),
                 auctionRequest.getEndTime(),
                 auctionRequest.getStartingPrice(),
-                auctionRequest.getCurrentPrice()
+                auctionRequest.getCurrentPrice(),
+                auctionRequest.getItemUrls()
         );
         auctionRepository.save(auction);
         return new AuctionResponse(
@@ -43,7 +44,8 @@ public class AuctionService implements AuctionServiceInterface{
                 auction.getStartTime(),
                 auction.getEndTime(),
                 auction.getStartingPrice(),
-                auction.getCurrentPrice()
+                auction.getCurrentPrice(),
+                auction.getItemUrls()
         );
     }
 
@@ -64,7 +66,8 @@ public class AuctionService implements AuctionServiceInterface{
                 auction.getStartTime(),
                 auction.getEndTime(),
                 auction.getStartingPrice(),
-                auction.getCurrentPrice()
+                auction.getCurrentPrice(),
+                auction.getItemUrls()
         );
     }
 
@@ -88,7 +91,8 @@ public class AuctionService implements AuctionServiceInterface{
                 auction.getStartTime(),
                 auction.getEndTime(),
                 auction.getStartingPrice(),
-                auction.getCurrentPrice()
+                auction.getCurrentPrice(),
+                auction.getItemUrls()
         );
 
     }
