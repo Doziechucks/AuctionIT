@@ -3,10 +3,11 @@ package org.example.dto.responses;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 public class AuctionListResponse {
-    private String auctionId;
-    private String itemName;
+    List<AuctionResponse> auctions;
 
 }

@@ -10,11 +10,11 @@ public interface AuctionServiceInterface {
     AuctionResponse createAuction(AuctionRequest auctionRequestRequest);
     AuctionResponse getAuctionById(String auctionId);
     AuctionResponse updateItem(UpdateRequest updateRequest);
-    List<AuctionListResponse>  getAllItems();
-    List<AuctionListResponse> getAuctionByName(AuctionNameRequest name);
-    List<AuctionListResponse> getItemByCategory(AuctionCategoryRequest category);
-    List<AuctionListResponse> getAuctionByStartDate(AuctionTimeRequests startDate);
-    List<AuctionListResponse> getAuctionByEndDate(AuctionTimeRequests endDate);
-    List<AuctionListResponse> getAuctionByPostDate(AuctionTimeRequests postDate);
+    List<AuctionResponse>  getAllItems();
+    List<AuctionResponse> getAuctionByName(AuctionNameRequest name);
+    List<AuctionResponse> getItemByCategory(AuctionCategoryRequest category);
+    List<AuctionResponse> getAuctionByStartDate(AuctionTimeRequests startDate);
+    List<AuctionResponse> getAuctionByEndDate(AuctionTimeRequests endDate);
+    List<AuctionResponse> getAuctionByPostDate(AuctionTimeRequests postDate);
 
 }

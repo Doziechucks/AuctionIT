@@ -34,40 +34,39 @@ public class AuctionController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<AuctionListResponse>> getAllItems() {
-        List<AuctionListResponse> responses = auctionService.getAllItems();
+    public ResponseEntity<List<AuctionResponse>> getAllItems() {
+        List<AuctionResponse> responses = auctionService.getAllItems();
         return ResponseEntity.ok(responses);
     }
 
     @GetMapping("/by-name")
-    public ResponseEntity<List<AuctionListResponse>> getAuctionByName(@RequestParam AuctionNameRequest request) {
-        List<AuctionListResponse> responses = auctionService.getAuctionByName(request);
+    public ResponseEntity<List<AuctionResponse>> getAuctionByName(@RequestParam AuctionNameRequest request) {
+        List<AuctionResponse> responses = auctionService.getAuctionByName(request);
         return ResponseEntity.ok(responses);
     }
 
     @GetMapping("/by-category")
-    public ResponseEntity<List<AuctionListResponse>> getAuctionByCategory(@RequestParam AuctionCategoryRequest categoryRequest) {
-        List<AuctionListResponse> responses = auctionService.getItemByCategory(categoryRequest);
+    public ResponseEntity<List<AuctionResponse>> getAuctionByCategory(@RequestParam AuctionCategoryRequest categoryRequest) {
+        List<AuctionResponse> responses = auctionService.getItemByCategory(categoryRequest);
         return ResponseEntity.ok(responses);
     }
 
     @GetMapping("/by-start-date")
-    public ResponseEntity<List<AuctionListResponse>> getAuctionsByStartDate(@RequestParam AuctionTimeRequests time) {
-        List<AuctionListResponse> responses = auctionService.getAuctionByStartDate(time);
+    public ResponseEntity<List<AuctionResponse>> getAuctionsByStartDate(@RequestParam AuctionTimeRequests time) {
+        List<AuctionResponse> responses = auctionService.getAuctionByStartDate(time);
         return ResponseEntity.ok(responses);
     }
 
-    @GetMapping("/by-end-ddate")
-    public ResponseEntity<List<AuctionListResponse>> getAuctionsByEndDate(@RequestParam AuctionTimeRequests time) {
-        List<AuctionListResponse> responses = auctionService.getAuctionByEndDate(time);
+    @GetMapping("/by-end-date")
+    public ResponseEntity<List<AuctionResponse>> getAuctionsByEndDate(@RequestParam AuctionTimeRequests time) {
+        List<AuctionResponse> responses = auctionService.getAuctionByEndDate(time);
         return ResponseEntity.ok(responses);
     }
 
     @GetMapping("/by-post-date")
-    public ResponseEntity<List<AuctionListResponse>> getAuctionsByPostDate(@RequestParam AuctionTimeRequests time) {
-        List<AuctionListResponse> responses = auctionService.getAuctionByPostDate(time);
+    public ResponseEntity<List<AuctionResponse>> getAuctionsByPostDate(@RequestParam AuctionTimeRequests time) {
+        List<AuctionResponse> responses = auctionService.getAuctionByPostDate(time);
         return ResponseEntity.ok(responses);
     }
-
 
 }

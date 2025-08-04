@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
-@Data @AllArgsConstructor @NoArgsConstructor
+@Data @AllArgsConstructor
 public class AuctionRequest {
     private String itemName;
     private String description;
@@ -22,5 +22,4 @@ public class AuctionRequest {
     private BigDecimal startingPrice;
     private BigDecimal currentPrice;
     private List<String> itemUrls;
-
 }

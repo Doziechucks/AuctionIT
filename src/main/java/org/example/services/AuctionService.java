@@ -5,11 +5,12 @@ import org.example.data.models.Auction;
 import org.example.data.repositories.AuctionRepository;
 import org.example.dto.responses.AuctionListResponse;
 import org.example.dto.responses.AuctionResponse;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-
+@Service
 public class AuctionService implements AuctionServiceInterface{
     private final AuctionRepository auctionRepository;
 
@@ -77,8 +78,10 @@ public class AuctionService implements AuctionServiceInterface{
         if(auction == null){
             throw new IllegalArgumentException("Auction ID not found");
         }
+        if (updateRequest.currentPrice.compareTo(auction.getCurrentPrice()) > 0){
         auction.setCurrentBidderId(updateRequest.getCurrentBidderId());
-        auction.setCurrentPrice(updateRequest.getCurrentPrice());
+        auction.setCurrentPrice(updateRequest.getCurrentPrice());}
+        else throw new IllegalArgumentException("New price cannot be less than or equal to current price");
         auctionRepository.save(auction);
         return new AuctionResponse(
                 auction.getAuctionId(),
@@ -99,68 +102,128 @@ public class AuctionService implements AuctionServiceInterface{
 
 
     @Override
-    public List<AuctionListResponse>  getAllItems() {
+    public List<AuctionResponse>  getAllItems() {
         List<Auction> auctions = auctionRepository.findAll();
         return  auctions.stream()
-                .map(auction -> new AuctionListResponse(
+                .map(auction -> new AuctionResponse(
                         auction.getAuctionId(),
-                        auction.getItemName()
+                        auction.getItemName(),
+                        auction.getItemDescription(),
+                        auction.getItemCategory(),
+                        auction.getSellerId(),
+                        auction.getCurrentBidderId(),
+                        auction.getPostTime(),
+                        auction.getStartTime(),
+                        auction.getEndTime(),
+                        auction.getStartingPrice(),
+                        auction.getCurrentPrice(),
+                        auction.getItemUrls()
                 ))
                 .collect(Collectors.toList());
     }
 
     @Override
-    public List<AuctionListResponse> getAuctionByName(AuctionNameRequest name) {
+    public List<AuctionResponse> getAuctionByName(AuctionNameRequest name) {
         List<Auction> auctions = auctionRepository.findByItemName(name.getName());
         return auctions.stream()
-                .map(auction -> new AuctionListResponse(
+                .map(auction -> new AuctionResponse(
                         auction.getAuctionId(),
-                        auction.getItemName()
+                        auction.getItemName(),
+                        auction.getItemDescription(),
+                        auction.getItemCategory(),
+                        auction.getSellerId(),
+                        auction.getCurrentBidderId(),
+                        auction.getPostTime(),
+                        auction.getStartTime(),
+                        auction.getEndTime(),
+                        auction.getStartingPrice(),
+                        auction.getCurrentPrice(),
+                        auction.getItemUrls()
                 ))
                 .collect(Collectors.toList());
     }
 
 
     @Override
-    public List<AuctionListResponse> getItemByCategory(AuctionCategoryRequest category) {
+    public List<AuctionResponse> getItemByCategory(AuctionCategoryRequest category) {
         List<Auction> auctions = auctionRepository.findByItemCategory(category.getCategory());
         return auctions.stream()
-                .map(auction -> new AuctionListResponse(
+                .map(auction -> new AuctionResponse(
                         auction.getAuctionId(),
-                        auction.getItemName()
+                        auction.getItemName(),
+                        auction.getItemDescription(),
+                        auction.getItemCategory(),
+                        auction.getSellerId(),
+                        auction.getCurrentBidderId(),
+                        auction.getPostTime(),
+                        auction.getStartTime(),
+                        auction.getEndTime(),
+                        auction.getStartingPrice(),
+                        auction.getCurrentPrice(),
+                        auction.getItemUrls()
                 ))
                 .collect(Collectors.toList());
     }
 
     @Override
-    public List<AuctionListResponse> getAuctionByStartDate(AuctionTimeRequests startDate) {
+    public List<AuctionResponse> getAuctionByStartDate(AuctionTimeRequests startDate) {
         List<Auction> auctions = auctionRepository.findByStartTime(startDate.getDate());
         return auctions.stream()
-                .map(auction -> new AuctionListResponse(
+                .map(auction -> new AuctionResponse(
                         auction.getAuctionId(),
-                        auction.getItemName()
+                        auction.getItemName(),
+                        auction.getItemDescription(),
+                        auction.getItemCategory(),
+                        auction.getSellerId(),
+                        auction.getCurrentBidderId(),
+                        auction.getPostTime(),
+                        auction.getStartTime(),
+                        auction.getEndTime(),
+                        auction.getStartingPrice(),
+                        auction.getCurrentPrice(),
+                        auction.getItemUrls()
                 ))
                 .collect(Collectors.toList());
     }
 
     @Override
-    public List<AuctionListResponse> getAuctionByEndDate(AuctionTimeRequests endDate) {
+    public List<AuctionResponse> getAuctionByEndDate(AuctionTimeRequests endDate) {
         List<Auction> auctions = auctionRepository.findByEndTime(endDate.getDate());
         return auctions.stream()
-                .map(auction -> new AuctionListResponse(
+                .map(auction -> new AuctionResponse(
                         auction.getAuctionId(),
-                        auction.getItemName()
+                        auction.getItemName(),
+                        auction.getItemDescription(),
+                        auction.getItemCategory(),
+                        auction.getSellerId(),
+                        auction.getCurrentBidderId(),
+                        auction.getPostTime(),
+                        auction.getStartTime(),
+                        auction.getEndTime(),
+                        auction.getStartingPrice(),
+                        auction.getCurrentPrice(),
+                        auction.getItemUrls()
                 ))
                 .collect(Collectors.toList());
     }
 
     @Override
-    public List<AuctionListResponse> getAuctionByPostDate(AuctionTimeRequests postDate) {
+    public List<AuctionResponse> getAuctionByPostDate(AuctionTimeRequests postDate) {
         List<Auction> auctions = auctionRepository.findByPostTime(postDate.getDate());
         return auctions.stream()
-                .map(auction -> new AuctionListResponse(
+                .map(auction -> new AuctionResponse(
                         auction.getAuctionId(),
-                        auction.getItemName()
+                        auction.getItemName(),
+                        auction.getItemDescription(),
+                        auction.getItemCategory(),
+                        auction.getSellerId(),
+                        auction.getCurrentBidderId(),
+                        auction.getPostTime(),
+                        auction.getStartTime(),
+                        auction.getEndTime(),
+                        auction.getStartingPrice(),
+                        auction.getCurrentPrice(),
+                        auction.getItemUrls()
                 ))
                 .collect(Collectors.toList());
     }

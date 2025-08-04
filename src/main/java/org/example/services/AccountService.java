@@ -11,6 +11,7 @@ import org.example.dto.responses.LoginResponse;
 import org.example.exceptions.EmailAlreadyExistsException;
 import org.example.security.PasswordEncoder;
 import org.example.utils.JwtUtils;
+
 import org.springframework.stereotype.Service;
 
 
@@ -39,6 +40,7 @@ public class AccountService implements AccountServiceInterface{
             userRepository.save(user);
             String token = JwtUtils.generateToken(user.getUserId(), user.getFirstName(), user.getLastName());
             return new CreateAccountResponse(token);
+
         }
         throw new IllegalArgumentException("Invalid Otp try again");
     }
@@ -78,10 +80,12 @@ public class AccountService implements AccountServiceInterface{
     public LoginResponse login(LoginRequest loginRequest) {
         User user = userRepository.findByEmail(loginRequest.getEmail());
         if(user != null) {
-            if(user.getPassword().equals(PasswordEncoder.hashPassword(loginRequest.getPassword()))) {
+            if(PasswordEncoder.verifyPassword(loginRequest.getPassword(), user.getPassword()))
+            {
                 String token = JwtUtils.generateToken(user.getUserId(), user.getFirstName(), user.getEmail());
                 return new LoginResponse(token);
             }
+            throw new IllegalArgumentException("wrong password");
         }
         throw new IllegalArgumentException("Invalid login detail try again");
 
